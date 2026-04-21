@@ -33,16 +33,12 @@
 
 ---
 
-## 🗄️ Esquema de Base de Datos (Prisma Schema)
+## 🗄️VIDEOS DE EXPLICACION
 
-### Entidades Principales (El flujo de trabajo)
+https://www.loom.com/share/7f26740749e843fba135bad7f25e6cf2
 
-- **Usuarios (`User`):** Son los agentes que operan el sistema. Los protegí con identificadores universales (`UUID`) para evitar exponer la cantidad de usuarios registrados, y aseguré que las contraseñas se almacenen únicamente como hashes encriptados.
-- **Clientes y Productos (`Customer` & `Product`):** Gestionan el catálogo. Utilicé el `NIT` como identificador único de la empresa. Si una empresa se da de baja, aseguré que sus productos se eliminen automáticamente gracias a la regla de borrado en cascada.
-- **El Núcleo (`Ticket`):** Es la tabla central que une todo el ecosistema. Conecta un problema con un producto y un agente. Diseñé la magia de la escalación en la columna `current_level`; con solo actualizar este número (de `1` a `2`), el ticket pasa de un agente L1 a un L2 de forma limpia y eficiente.
-- **Bitácora (`Comment`):** Funciona como el historial inmutable de seguimiento del ticket, vinculando qué usuario dijo qué cosa y en qué momento exacto.
+https://www.loom.com/share/5928c71691e543e889c430deae62b3d9
 
-### 🛡️ Auditoría Profesional
-Aseguré que todas las tablas incluyan campos de auditoría automáticos (`created_at`, `updated_at`). Además, con el patrón de **Soft Delete** (`deleted_at`), garantizo que cuando un usuario "borra" un registro desde la interfaz, este no se destruye de la base de datos, sino que se oculta lógicamente. Esto protege el historial para futuras auditorías técnicas.
+https://www.loom.com/share/836b24b666e5428a835628894b718605
 
----
+https://www.loom.com/share/8a950c138f7b4ac88869c94f18a0430c

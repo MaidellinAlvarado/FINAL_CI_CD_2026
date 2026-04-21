@@ -28,11 +28,11 @@ app.post('/api/users', (req, res) => userController.crear(req, res));
 
 
 // RUTAS DE TICKETS
-// 1. Crear y Listar
+//crear y vemos 
 app.post('/api/tickets', (req, res) => ticketController.crear(req, res));
 app.get('/api/tickets', (req, res) => ticketController.listar(req, res));
 
-// 2. Rutas estáticas 
+// Rutas estáticas 
 app.get('/api/tickets/reporte/pdf', (req, res) => ticketController.descargarReporte(req, res)); 
 app.get('/api/tickets/:id', (req, res) => ticketController.obtenerPorId(req, res));
 app.delete('/api/tickets/comments/:id', (req, res) => ticketController.eliminar(req, res));

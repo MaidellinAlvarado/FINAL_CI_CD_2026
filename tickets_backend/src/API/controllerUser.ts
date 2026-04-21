@@ -7,17 +7,19 @@ const prisma = new PrismaClient();
 export class UserController {
   async crear(req: Request, res: Response) {
     try {
-      const { name, email, role, password } = req.body;
+      const { full_name, email, role, password_hash } = req.body; 
+      
       const salt = await bcrypt.genSalt(10);
-      const hashedPassword = await bcrypt.hash(password, salt);
+  
+      const hashedPassword = await bcrypt.hash(password_hash, salt);
 
-      //  Creamos el usuario en la DB
+      // Creamos el usuario en la DB
       const nuevoUsuario = await prisma.user.create({
         data: {
-          full_name: name,
+          full_name: full_name, 
           email: email,
           password_hash: hashedPassword, 
-          role: role === 'L2' ? 'l2_agent' : 'l1_agent' 
+          role: role === 'l2_agent' || role === 'L2' ? 'l2_agent' : 'l1_agent' 
         }
       });
 
@@ -28,10 +30,10 @@ export class UserController {
       });
 
     } catch (error) {
-      console.error(error);
+      console.error("ERROR REAL DE PRISMA:", error); 
       res.status(500).json({
         success: false,
-        message: "Error al crear el usuario. Revisa si el email ya existe."
+        message: "Error al crear el usuario. Revisa la consola para más detalles."
       });
     }
   }

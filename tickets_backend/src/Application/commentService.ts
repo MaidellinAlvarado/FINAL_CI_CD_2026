@@ -16,7 +16,7 @@ export class CommentService {
     return nuevoComentario;
   }
 
-  // Lógica para listar los comentarios ordenados (Aplicando Soft Delete)
+  // Lógica para listar los comentarios ordenados 
   async obtenerComentarios(ticketId: string) {
     const comentarios = await prisma.comment.findMany({
       where: { 
@@ -61,7 +61,7 @@ export class CommentService {
       throw new Error('El comentario ya fue eliminado previamente');
     }
 
-    // El Update mágico para el Soft Delete
+    // El Update para el Soft Delete
     await prisma.comment.update({
       where: { comment_id },
       data: { deleted_at: new Date() }
